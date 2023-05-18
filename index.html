@@ -2,39 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>西瓜價格變化</title>
+  <title>商品價格紀錄</title>
+  <style>
+    /* CSS樣式 */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      width: 200px;
+      margin-bottom: 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
 </head>
 <body>
-<h1>商品價格變化</h1>
+<h1>商品價格紀錄</h1>
 
-<form id="priceForm">
-  <label for="date">日期:</label>
-  <input type="date" id="date" name="date" required><br>
+<form id="recordForm">
+  <label for="date">日期：</label>
+  <input type="text" id="date" name="date" placeholder="請輸入日期 (YYYY-MM-DD)" required>
 
-  <label for="productName">商品名稱:</label>
-  <input type="text" id="productName" name="productName" required><br>
+  <label for="productName">商品名稱：</label>
+  <input type="text" id="productName" name="productName" placeholder="請輸入商品名稱" required>
 
-  <label for="price">商品價格:</label>
-  <input type="number" id="price" name="price" required><br>
+  <label for="price">商品價格：</label>
+  <input type="text" id="price" name="price" placeholder="請輸入商品價格" required>
 
-  <button type="submit">新增</button>
+  <button type="submit">新增記錄</button>
 </form>
 
-<br>
+<h2>商品價格變化</h2>
 
-<input type="text" id="search" placeholder="搜尋商品名稱">
-<button onclick="search()">搜尋</button>
+<div id="recordsContainer">
+  <table id="recordsTable">
+    <thead>
+    <tr>
+      <th>日期</th>
+      <th>商品名稱</th>
+      <th>商品價格</th>
+    </tr>
+    </thead>
+    <tbody id="recordsBody"></tbody>
+  </table>
+</div>
 
-<br><br>
-
-<table id="priceTable">
-  <tr>
-    <th>日期</th>
-    <th>商品名稱</th>
-    <th>商品價格</th>
-  </tr>
-</table>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
