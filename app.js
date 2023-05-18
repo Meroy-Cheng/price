@@ -37,3 +37,37 @@ app.post("/records", (req, res) => {
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
+$(document).ready(function() {
+  // 在頁面加載時向後端請求所有記錄
+  fetchRecords();
+});
+
+// 向後端請求所有記錄
+function fetchRecords() {
+  $.ajax({
+    url: "/records",
+    type: "GET",
+    success: function(data) {
+      displayRecords(data);
+    },
+    error: function(error) {
+      console.log("Error:", error);
+    }
+  });
+}
+
+// 將記錄顯示在前端
+function displayRecords(records) {
+  const recordsBody = $("#recordsBody");
+  recordsBody.empty();
+
+  records.forEach(function(record) {
+    const row = $("<tr></tr>");
+    const dateCell = $("<td></td>").text(record.date);
+    const productNameCell = $("<td></td>").text(record.productName);
+    const priceCell = $("<td></td>").text(record.price);
+
+    row.append(dateCell, productNameCell, priceCell);
+    recordsBody.append(row);
+  });
+}
